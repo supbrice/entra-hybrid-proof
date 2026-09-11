@@ -47,7 +47,8 @@ jobs:
         run: |
           grep -q "LAB ONLY" README.md
           grep -q "supbrice.github.io/portfolio" README.md
-          grep -q "not a customer" README.md
+          grep -q "customer tenant" README.md
+          grep -q "employer tenant" README.md
 
       - name: JML plan against example config
         shell: pwsh
