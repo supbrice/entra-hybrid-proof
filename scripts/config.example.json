@@ -1,0 +1,52 @@
+{
+  "labName": "bricelab-entra-proof",
+  "disclaimer": "LAB ONLY — not a customer or employer tenant. Copy this file to config.json and change every UPN to a directory you own.",
+  "tenantDomain": "contoso.onmicrosoft.com",
+  "identitySource": "CloudOnly",
+  "usageLocation": "US",
+  "skuPartNumber": "SPE_E3",
+  "skuId": "00000000-0000-0000-0000-000000000000",
+  "assignDirectLicense": false,
+  "breakGlassUpns": [
+    "breakglass01@contoso.onmicrosoft.com",
+    "breakglass02@contoso.onmicrosoft.com"
+  ],
+  "groups": {
+    "allUsers": "LAB-All-Users",
+    "license": "LAB-LIC-M365-E3",
+    "engineering": "LAB-APP-Engineering",
+    "finance": "LAB-APP-Finance",
+    "breakGlass": "LAB-Break-Glass",
+    "pimApprovers": "LAB-PIM-UserAdmin-Approvers"
+  },
+  "joiner": {
+    "userPrincipalName": "alex.joiner@contoso.onmicrosoft.com",
+    "displayName": "Alex Joiner",
+    "mailNickname": "alex.joiner",
+    "department": "Engineering",
+    "jobTitle": "Cloud Analyst",
+    "managerUpn": "manager.lab@contoso.onmicrosoft.com",
+    "groupNames": [
+      "LAB-All-Users",
+      "LAB-LIC-M365-E3",
+      "LAB-APP-Engineering"
+    ]
+  },
+  "mover": {
+    "userPrincipalName": "alex.joiner@contoso.onmicrosoft.com",
+    "newDepartment": "Finance",
+    "newJobTitle": "Finance Systems Analyst",
+    "addGroupNames": [
+      "LAB-APP-Finance"
+    ],
+    "removeGroupNames": [
+      "LAB-APP-Engineering"
+    ]
+  },
+  "leaver": {
+    "userPrincipalName": "alex.joiner@contoso.onmicrosoft.com",
+    "revokeSessions": true,
+    "removeGroupMemberships": true,
+    "keepDisabledAccountDays": 30
+  }
+}
