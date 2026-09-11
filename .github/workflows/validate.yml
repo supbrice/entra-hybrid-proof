@@ -1,0 +1,57 @@
+name: validate
+
+on:
+  push:
+    branches: [main, "cursor/**"]
+  pull_request:
+
+jobs:
+  paths-and-plan:
+    name: required files + JML plan
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Required hire-facing paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in \
+            README.md \
+            LICENSE \
+            docs/README.md \
+            docs/break-glass.md \
+            docs/conditional-access.md \
+            docs/pim-user-administrator.md \
+            docs/group-based-access.md \
+            docs/m365-admin-scenarios.md \
+            docs/interview-talk-track.md \
+            scripts/README.md \
+            scripts/config.example.json \
+            scripts/common/LabIdentity.psm1 \
+            scripts/Invoke-LabJmlDemo.ps1 \
+            scripts/joiner/New-LabJoiner.ps1 \
+            scripts/joiner/README.md \
+            scripts/mover/Set-LabMover.ps1 \
+            scripts/mover/README.md \
+            scripts/leaver/Invoke-LabLeaver.ps1 \
+            scripts/leaver/README.md
+          do
+            test -f "$f" || { echo "missing $f"; exit 1; }
+          done
+          echo "All required paths present."
+
+      - name: Lab-only disclaimer in README
+        shell: bash
+        run: |
+          grep -q "LAB ONLY" README.md
+          grep -q "supbrice.github.io/portfolio" README.md
+          grep -q "not a customer" README.md
+
+      - name: JML plan against example config
+        shell: pwsh
+        run: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference = "Stop"
+          ./scripts/Invoke-LabJmlDemo.ps1 -ConfigPath ./scripts/config.example.json

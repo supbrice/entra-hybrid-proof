@@ -1,0 +1,23 @@
+# Lab tenant config — copy from scripts/config.example.json
+scripts/config.json
+scripts/**/config.json
+
+# Runtime output
+*.csv
+*.log
+out/
+tmp/
+
+# Secrets and local env
+.env
+.env.*
+!.env.example
+*.secret
+*.pfx
+*.pem
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
